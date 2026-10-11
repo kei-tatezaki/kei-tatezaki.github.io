@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>舘崎 慶 | ゲーム制作ポートフォリオ</title>
+<meta name="description" content="ゲームクリエイター科の舘崎慶です。3Dアクション『DIMAZE』をSteamで配信しています。">
+<meta property="og:title" content="舘崎 慶 | ゲーム制作ポートフォリオ">
+<meta property="og:description" content="3Dアクション『DIMAZE』をSteamで配信中。企画から実装までやっています。">
+<meta property="og:image" content="images/keyart.jpg">
+<link rel="icon" href="images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+2:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stone:#1B2033;
+  --stone-deep:#12151F;
+  --stone-lift:#242A40;
+  --brass:#C9A45C;
+  --brass-dim:#7D6738;
+  --drain:#B44BE0;
+  --ink:#ECE9F1;
+  --ink-soft:#A9A6B8;
+  --gut:clamp(18px,5vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:'M PLUS 2',sans-serif;font-size:16px;line-height:1.85;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:var(--brass);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+h1,h2,h3{font-family:'Dela Gothic One',sans-serif;font-weight:400;line-height:1.25;margin:0}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+
+/* ---------- hero: gameplay video ---------- */
+.hero{position:relative;height:min(100svh,860px);min-height:520px;background:#000 url(images/hero_poster.jpg) center/cover;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,21,31,.55) 0%,rgba(18,21,31,0) 22%,rgba(18,21,31,0) 45%,rgba(18,21,31,.92) 88%,var(--stone) 100%)}
+.topbar{position:absolute;z-index:2;top:0;left:0;right:0;display:flex;align-items:center;gap:22px;padding:18px var(--gut);font-size:14px}
+.topbar .me{font-weight:700;color:var(--ink);text-decoration:none;margin-right:auto}
+.topbar a{color:var(--ink);text-decoration:none;opacity:.85}
+.topbar a:hover{opacity:1;color:var(--brass)}
+.hero-text{position:absolute;z-index:2;left:0;right:0;bottom:clamp(36px,7vw,72px)}
+.hero h1{font-size:clamp(56px,12vw,132px);letter-spacing:.04em;line-height:1}
+.hero .hello{margin-top:18px;font-size:clamp(16px,2.2vw,20px);font-weight:500;max-width:32em}
+.hero .school{margin-top:6px;color:var(--ink-soft);font-size:14px}
+
+/* ---------- buttons: borrowed from DIMAZE's brass UI slots ---------- */
+.slot{display:inline-block;padding:10px 20px;color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;background:var(--stone-deep);border:1px solid var(--brass);box-shadow:inset 0 0 0 3px var(--stone-deep),inset 0 0 0 4px var(--brass-dim)}
+.slot:hover{background:var(--stone-lift)}
+.slot.gold{background:var(--brass);color:var(--stone-deep);box-shadow:inset 0 0 0 3px var(--brass),inset 0 0 0 4px #E8CF93}
+.slot.gold:hover{background:#D7B46D}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+/* ---------- intro ---------- */
+.intro{padding-top:clamp(56px,9vw,110px);padding-bottom:clamp(40px,6vw,72px)}
+.intro .cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
+.intro h2{font-size:clamp(26px,3.6vw,38px)}
+.intro .body p+p{margin-top:1.1em}
+.intro .body strong{color:var(--brass);font-weight:700}
+details{margin-top:28px;border-top:1px solid var(--stone-lift);border-bottom:1px solid var(--stone-lift)}
+summary{cursor:pointer;padding:14px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"開く";color:var(--brass);font-weight:500;font-size:14px}
+details[open] summary::after{content:"閉じる"}
+details .inner{padding:0 0 20px;color:var(--ink-soft)}
+details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px}
+
+/* ---------- DIMAZE: the one loud moment ---------- */
+.dimaze{position:relative;background:#1a0b24 url(images/keyart.jpg) right center/cover;margin-top:clamp(16px,3vw,32px)}
+.dimaze::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,10,28,.92) 0%,rgba(18,10,28,.75) 42%,rgba(18,10,28,0) 75%)}
+.dimaze .wrap{position:relative;padding-top:clamp(56px,8vw,100px);padding-bottom:clamp(56px,8vw,100px)}
+.dimaze .logo{width:min(420px,78%);filter:drop-shadow(0 6px 24px rgba(0,0,0,.5))}
+.dimaze .what{max-width:30em;margin-top:22px;font-size:17px}
+.dimaze .facts{margin-top:14px;color:#D9CDE6;font-size:14px;max-width:34em}
+.shots{margin-top:clamp(28px,4vw,44px)}
+.shots .strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 14px;margin:0 calc(var(--gut)*-1);scrollbar-width:thin;scrollbar-color:var(--brass-dim) transparent}
+.shots figure{margin:0;flex:0 0 min(560px,84%);scroll-snap-align:start}
+.shots img{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--brass-dim)}
+.shots figcaption{font-size:13px;color:#CFC4DC;margin-top:6px}
+
+/* ---------- my part in DIMAZE ---------- */
+.mypart{padding-top:clamp(48px,7vw,84px)}
+.mypart .cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px)}
+.mypart h2{font-size:clamp(22px,3vw,30px)}
+.mypart ul{margin:0;padding:0;list-style:none}
+.mypart li{padding:12px 0;border-bottom:1px solid var(--stone-lift)}
+.mypart li b{display:block}
+.mypart li span{color:var(--ink-soft);font-size:15px}
+
+/* ---------- works shelves ---------- */
+.works{padding-top:clamp(64px,9vw,120px)}
+.works > .wrap > h2{font-size:clamp(28px,4vw,44px)}
+.works > .wrap > p{color:var(--ink-soft);margin-top:8px;max-width:36em}
+.shelf{margin-top:clamp(36px,5vw,56px)}
+.shelf-head{display:flex;align-items:baseline;gap:12px}
+.shelf-head h3{font-size:clamp(19px,2.4vw,24px)}
+.shelf-head .n{color:var(--brass);font-size:14px}
+.shelf-head .nav{margin-left:auto;display:flex;gap:6px}
+.shelf-head button{width:40px;height:34px;background:var(--stone-deep);color:var(--brass);border:1px solid var(--brass-dim);cursor:pointer;font-size:15px}
+.shelf-head button:hover:not(:disabled){border-color:var(--brass)}
+.shelf-head button:disabled{opacity:.3;cursor:default}
+.shelf .lede{color:var(--ink-soft);font-size:14px;margin-top:2px}
+.row{display:flex;gap:clamp(16px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--gut);padding:16px var(--gut) 12px;margin:0 calc(var(--gut)*-1);scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.work{flex:0 0 clamp(250px,26vw,330px);scroll-snap-align:start;text-decoration:none;color:var(--ink)}
+.frame{position:relative;aspect-ratio:16/9;background:var(--stone-deep);border:1px solid var(--brass-dim);box-shadow:inset 0 0 0 3px var(--stone-deep);overflow:hidden}
+.frame img,.frame video{width:100%;height:100%;object-fit:cover}
+.work:hover .frame{border-color:var(--brass)}
+.frame .tile{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px 16px;font-family:'Dela Gothic One',sans-serif;font-size:22px;line-height:1.3;color:var(--brass);background:repeating-linear-gradient(135deg,var(--stone-deep) 0 14px,#161a28 14px 28px)}
+.work h4{margin:12px 0 2px;font-size:16px;font-weight:700;line-height:1.5}
+.work .one{font-size:14px;color:var(--ink-soft);line-height:1.7}
+.work .by{font-size:13px;color:var(--brass);margin-top:6px}
+.pager{display:none;gap:5px;padding-left:2px}
+.pager i{width:18px;height:3px;background:var(--stone-lift)}
+.pager i.on{background:var(--brass)}
+
+/* ---------- discarded ideas ---------- */
+.scrap{margin-top:clamp(56px,8vw,96px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--stone-deep);padding:clamp(22px,4vw,40px);border-left:3px solid var(--brass-dim)}
+.scrap h3{font-size:22px}
+.scrap p{color:var(--ink-soft);margin-top:10px}
+.scrap .frame{display:block}
+
+/* ---------- tools ---------- */
+.tools{padding-top:clamp(64px,9vw,110px)}
+.tools h2{font-size:clamp(24px,3.2vw,34px)}
+.tools dl{margin:20px 0 0;display:grid;grid-template-columns:max-content max-content minmax(0,1fr);column-gap:28px}
+.tools dt,.tools dd{margin:0;padding:12px 0;border-bottom:1px solid var(--stone-lift)}
+.tools dt{font-weight:700}
+.tools .h{color:var(--brass);font-variant-numeric:tabular-nums;text-align:right}
+.tools .u{color:var(--ink-soft)}
+
+/* ---------- contact ---------- */
+.contact{margin-top:clamp(72px,10vw,130px);background:var(--stone-deep);padding:clamp(48px,7vw,88px) 0}
+.contact h2{font-size:clamp(24px,3.2vw,34px)}
+.contact p{margin-top:10px;color:var(--ink-soft)}
+.contact .mail{display:inline-block;margin-top:18px;font-size:clamp(20px,3.4vw,32px);font-weight:700;color:var(--ink);word-break:break-all}
+.contact .others{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px}
+.contact small{display:block;margin-top:40px;color:#6F6C80}
+
+@media (max-width:760px){
+  .topbar a:not(.me){display:none}
+  .intro .cols,.mypart .cols,.scrap{grid-template-columns:minmax(0,1fr)}
+  .dimaze{background-position:70% center}
+  .dimaze::before{background:linear-gradient(180deg,rgba(18,10,28,.55) 0%,rgba(18,10,28,.92) 60%)}
+  .work{flex-basis:80%}
+  .shelf-head .nav{display:none}
+  .pager{display:flex}
+  .tools dl{grid-template-columns:minmax(0,1fr) max-content}
+  .tools .u{grid-column:1/-1;padding-top:0;margin-top:-8px}
+  .tools dt,.tools .h{border-bottom:0;padding-bottom:4px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <video autoplay muted loop playsinline poster="images/hero_poster.jpg" aria-hidden="true">
+    <source src="images/hero.mp4" type="video/mp4">
+  </video>
+  <nav class="topbar">
+    <a class="me" href="#top">舘崎 慶</a>
+    <a href="#dimaze">DIMAZE</a>
+    <a href="#works">作品</a>
+    <a href="#contact">連絡先</a>
+  </nav>
+  <div class="hero-text wrap">
+    <h1>舘崎 慶</h1>
+    <p class="hello">ゲームを作っています。いまはチームで作っている3Dアクション『DIMAZE』を、Steamで配信しています。</p>
+    <p class="school">専門学校国際理工カレッジ ゲームクリエイター科　2028年3月卒業予定</p>
+  </div>
+</header>
+
+<section class="intro wrap" id="about">
+  <div class="cols">
+    <h2>企画を考えるのが<br>いちばん楽しい。</h2>
+    <div class="body">
+      <p>3Dアクションを個人で作ってきて、技術よりも「どうすれば全体が面白くなるか」を考えている時間に一番熱中していることに気づきました。なので、<strong>ゲームデザイナー（プランナー）</strong>を目指しています。</p>
+      <p>企画書を書くところから、Unityで実装して、Steamで売るところまで一人でできます。知らないエンジンや言語でも、AIを使いながらすぐに触れるようにしています。最近はBlenderでアニメーションも作れるようになりました。</p>
+      <p>いつか、レディ・プレイヤー1やSAOのように、ジャンルの垣根を越えてたくさんの人が同じ世界を共有できる遊びを作りたいです。</p>
+      <details>
+        <summary>志望理由をもう少し詳しく</summary>
+        <div class="inner">
+          <h3>ゲームデザイナーとして</h3>
+          <p>プログラマーは担当する領域を深く掘る職種で、プランナーは企画・開発・デザイン・運営と横断的に関われる職種だと考えています。多くのジャンルの制作に関わって引き出しを増やしたいので、プランナーを志望しています。まずは一つのタイトルを最後までやり切る現場で、企画を形にする力を身につけたいです。</p>
+          <h3>ゲームプログラマーとして</h3>
+          <p>プラン以外の仕事もできます。機能付きの簡単なモデルや、アニメーションも作れます。</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="dimaze" id="dimaze">
+  <div class="wrap">
+    <img class="logo" src="images/logo.png" alt="DIMAZE">
+    <p class="what">敵の技を奪って撃ち返す、無限成長の3Dアクション。層ごとに鍵を探してゲートを上っていくダンジョンゲームです。</p>
+    <p class="facts">5人チームで2026年2月から制作。自分は企画から実装までを担当していて、制作時間は600時間を超えました。</p>
+    <div class="actions">
+      <a class="slot gold" href="https://store.steampowered.com/app/4859690/DIMAZE/" target="_blank" rel="noopener">Steamストアで見る</a>
+      <a class="slot" href="https://youtu.be/8Q6oLyJZZ28" target="_blank" rel="noopener">進捗動画（YouTube）</a>
+    </div>
+    <div class="shots">
+      <div class="strip">
+        <figure><img src="images/ss1.jpg" alt="氷の魔法を奪って撃ち返す場面" loading="lazy"><figcaption>敵の魔法を「ドレインホール」で吸って、自分の技にする</figcaption></figure>
+        <figure><img src="images/ss2.jpg" alt="剣で敵と戦う場面" loading="lazy"><figcaption>近接は剣。武器ごとに剣筋が変わる</figcaption></figure>
+        <figure><img src="images/ss3.jpg" alt="松明の通路での戦闘" loading="lazy"><figcaption>層ごとにマップが変わるダンジョン</figcaption></figure>
+        <figure><img src="images/ss4.jpg" alt="ディムグリフを3つから選ぶ画面" loading="lazy"><figcaption>層を上るたびに強化を1つ選ぶ</figcaption></figure>
+        <figure><img src="images/ss5.jpg" alt="ボスの姿" loading="lazy"><figcaption>ボス</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mypart wrap">
+  <div class="cols">
+    <h2>DIMAZEで<br>自分がやったこと</h2>
+    <ul>
+      <li><b>企画・ゲームデザイン</b><span>「奪って撃ち返す」を軸にしたスキルの仕組み、層の進み方、強化の選び方。</span></li>
+      <li><b>プログラム全般</b><span>Unity / C#。プレイヤー、敵、UI、目標の表示まで。動いているメンバーが少ないので、モデルとキャラデザイン以外はほぼ担当しています。</span></li>
+      <li><b>アニメーションとエフェクト</b><span>主人公の刀の3連撃をBlenderで作り、剣筋や血の演出をUnityで付けました。</span></li>
+      <li><b>売り方</b><span>Steam Next Festに出してウィッシュリストを集めてから販売する計画です。SNSに動画を出して反応も数字で見ています。</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="works" id="works">
+  <div class="wrap">
+    <h2>作品</h2>
+    <p>分野ごとに並べています。横にスライドすると次の作品が見られます。タップすると、作り方や苦労したことを書いたページに飛びます。</p>
+    <div id="shelves"></div>
+
+    <aside class="scrap">
+      <a class="frame" id="scrapThumb" href="https://alkaline-plutonium-25d.notion.site/52e0038ab0bd82cdae3381b890c77692" target="_blank" rel="noopener" aria-label="没案のページを開く"></a>
+      <div>
+        <h3>ボツにしたもの</h3>
+        <p>マウスで受け流すパリィを作りましたが、ボタン1つで気持ちよく出せるはずのパリィに手間が増えるので外しました。ほかにジャスト回避の演出や、会話するAIも試して没にしています。</p>
+        <p><a href="https://alkaline-plutonium-25d.notion.site/52e0038ab0bd82cdae3381b890c77692" target="_blank" rel="noopener">没にした理由を読む</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="tools wrap" id="tools">
+  <h2>使っている道具</h2>
+  <dl>
+    <dt>Unity / C#</dt><dd class="h">約1000時間</dd><dd class="u">DIMAZE、コーギーゴージャス、エフェクトや目標システムの試作</dd>
+    <dt>Claude / Unity MCP</dt><dd class="h">約300時間</dd><dd class="u">実装と調査の相棒。UnityやBlenderに直接つないで使っています</dd>
+    <dt>WWS.js</dt><dd class="h">約100時間</dd><dd class="u">JavaScript</dd>
+    <dt>Blender</dt><dd class="h">約80時間</dd><dd class="u">刀の3連撃のアニメーション、割れる壺</dd>
+    <dt>Siv3D / C++</dt><dd class="h">約60時間</dd><dd class="u">BugBugSinSin（ゲームジャムで初めて触りました）</dd>
+  </dl>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2>連絡先</h2>
+    <p>作品についての質問や、お仕事・インターンのお話など、気軽にご連絡ください。</p>
+    <a class="mail" href="mailto:tatezakikei@itc.ac.jp">tatezakikei@itc.ac.jp</a>
+    <div class="others">
+      <a href="https://x.com/kei_tate13102" target="_blank" rel="noopener">X（@kei_tate13102）</a>
+      <a href="https://store.steampowered.com/app/4859690/DIMAZE/" target="_blank" rel="noopener">DIMAZE（Steam）</a>
+      <a href="https://alkaline-plutonium-25d.notion.site/c7e0038ab0bd8303b13a812d7e5edb33" target="_blank" rel="noopener">詳しいポートフォリオ（Notion）</a>
+    </div>
+    <small>© 2026 Kei Tatezaki</small>
+  </div>
+</footer>
+
+<script>
+// ===== 作品データ。作品を足すときはここに1つ書き足す =====
+// media: 先頭から順に試す。mp4 は動画、それ以外は画像。全部だめなら作品名のタイルになる
+const N = id => 'https://alkaline-plutonium-25d.notion.site/' + id;
+const YT = id => 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
+const W = {
+  dimaze:{t:'DIMAZE',one:'敵の技を奪って撃ち返す3Dアクション。Steamで配信中',by:'5人チーム／企画・実装',url:N('28a0038ab0bd8335b44381aafd3118ba'),media:['images/ss1.jpg']},
+  bugbug:{t:'BugBugSinSin',one:'Siv3Dゲームジャム バンダイナムコスタジオ杯2025。初めてのC++で、敵を倒すほど進化するアクションを作った',by:'3人チーム／メインプログラマー',url:N('0730038ab0bd837990cf8173737c9706'),media:['images/bugbugsinsin.gif',YT('hhZw2hESO5Y')]},
+  corgi:{t:'コーギーゴージャス',one:'千葉興銀との産学連携。提出1週間前に企画を変えることになり、ミニゲームを分担できるサイコロゲームに切り替えた',by:'5人チーム／リーダー・サイコロの仕組み',url:N('b400038ab0bd8237a84a814b52572b85'),media:['images/corgi.jpg',YT('_eSs93cFjuI')]},
+  noboru:{t:'のぼってジャンプ',one:'',by:'',url:N('2390038ab0bd83c8af95016c185d4be1'),media:['images/noboru.jpg']},
+  quest:{t:'迷わせない目標表示',one:'DIMAZEに「今やること」を1行で出す仕組み。目標の中身を変えてもコードを書き直さずに済むようにした',by:'1人／約6時間',url:N('3f60038ab0bd819f9c95fc92d77dc0f4'),media:['images/quest.mp4','images/quest.jpg']},
+  ore:{t:'属性鉱石システム',one:'ダンジョンの鉱石を割ると、しばらく武器に雷・炎・毒・氷が宿る。数値を1つのデータに集めて調整しやすくした',by:'1人／約14時間',url:N('3f60038ab0bd819d8f44e9d0dba36678'),media:['images/ore.mp4','images/ore.jpg']},
+  aura:{t:'体にまとう属性の演出',one:'炎・雷・毒・氷を、実物の色や動きを調べて写実寄りに。キャラが隠れないように見せ方も工夫した',by:'1人／約13時間',url:N('3f60038ab0bd815db415e5561e730118'),media:['images/aura.mp4','images/aura.jpg']},
+  skill:{t:'絶対零度と電光石火',one:'凍らせて、雷の突進で砕くスキルを試作。SNSに出して、見られていないのは「最初の1秒」だと分かった',by:'1人／企画・エフェクト・分析',url:N('fc00038ab0bd835184750149940ed63e'),media:['images/skill.mp4','images/skill.jpg']},
+  katana:{t:'刀の3連撃',one:'Blenderで1コマずつ動きを作り、Unityで剣筋・血振り・納刀まで付けた',by:'1人／約35時間',url:N('3f60038ab0bd8165a1acea3756012f92'),media:['images/katana.mp4','images/katana.jpg']},
+  pot:{t:'割れる壺',one:'BlenderのCell Fractureで割れる壺を作って、Unityで動かした',by:'1人／3時間',url:N('c6a0038ab0bd839497c5815fca06c210'),media:['images/pot.gif']},
+  potu:{t:'割れる壺（U#）',one:'同じ壺を U#（UdonSharp）で動くようにした版',by:'1人',url:N('db10038ab0bd83b0a8aa81fc8eeb5172'),media:['images/pot-u.gif','images/pot.gif']},
+};
+const SHELVES = [
+  {name:'ゲーム',items:['dimaze','bugbug','corgi','noboru']},
+  {name:'ゲームの仕組み',items:['quest','ore']},
+  {name:'エフェクト・演出',items:['aura','skill','katana']},
+  {name:'3Dモデル・アニメーション',items:['katana','pot','potu']},
+  {name:'ゲームジャム・産学連携',lede:'チームで、決められた期間とお題の中で作ったもの',items:['bugbug','corgi']},
+];
+
+// ===== ここから下は表示の処理 =====
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function fill(frame, list, title){
+  if(!list.length){ frame.innerHTML = `<span class="tile">${esc(title)}</span>`; return; }
+  const src = list[0], rest = list.slice(1);
+  if(src.endsWith('.mp4')){
+    const v = document.createElement('video');
+    Object.assign(v,{muted:true,loop:true,playsInline:true,autoplay:true,preload:'metadata'});
+    v.setAttribute('muted',''); v.setAttribute('playsinline','');
+    v.src = src; v.onerror = () => fill(frame, rest, title);
+    frame.replaceChildren(v);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ v.autoplay=false; }
+  } else {
+    const i = new Image(); i.alt = ''; i.decoding = 'async';
+    i.onload = () => frame.replaceChildren(i);
+    i.onerror = () => fill(frame, rest, title);
+    i.src = src;
+  }
+}
+const box = document.getElementById('shelves');
+SHELVES.forEach(s => {
+  const el = document.createElement('div'); el.className = 'shelf';
+  el.innerHTML = `<div class="shelf-head"><h3>${esc(s.name)}</h3><span class="n">${s.items.length}本</span>
+      ${s.items.length>1?'<div class="nav"><button aria-label="前の作品">‹</button><button aria-label="次の作品">›</button></div>':''}</div>
+    ${s.lede?`<p class="lede">${esc(s.lede)}</p>`:''}
+    <div class="row">${s.items.map(k=>{const w=W[k];return `<a class="work" href="${w.url}" target="_blank" rel="noopener">
+      <div class="frame"></div><h4>${esc(w.t)}</h4>${w.one?`<p class="one">${esc(w.one)}</p>`:''}${w.by?`<p class="by">${esc(w.by)}</p>`:''}</a>`}).join('')}</div>
+    ${s.items.length>1?`<div class="pager">${s.items.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>`:''}`;
+  box.append(el);
+  el.querySelectorAll('.frame').forEach((f,i)=>{const w=W[s.items[i]]; fill(f,w.media,w.t);});
+  const row = el.querySelector('.row'), btn = el.querySelectorAll('.nav button'), bars = el.querySelectorAll('.pager i');
+  const step = () => row.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(row).columnGap||20);
+  if(btn.length){ btn[0].onclick=()=>row.scrollBy({left:-step(),behavior:'smooth'}); btn[1].onclick=()=>row.scrollBy({left:step(),behavior:'smooth'}); }
+  const sync = () => {
+    if(btn.length){ btn[0].disabled = row.scrollLeft < 4; btn[1].disabled = row.scrollLeft + row.clientWidth > row.scrollWidth - 4; }
+    const k = Math.round(row.scrollLeft / step()); bars.forEach((b,j)=>b.classList.toggle('on', j===Math.min(k,bars.length-1)));
+  };
+  row.addEventListener('scroll', sync, {passive:true}); addEventListener('resize', sync); sync();
+});
+fill(document.getElementById('scrapThumb'), ['images/botsu.png', YT('ZXQXBCY4_Lo')], 'ボツにしたもの');
+</script>
+</body>
+</html>
