@@ -76,6 +76,9 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
 .dimaze .logo{width:min(420px,78%);filter:drop-shadow(0 6px 24px rgba(0,0,0,.5))}
 .dimaze .what{max-width:30em;margin-top:22px;font-size:17px}
 .dimaze .facts{margin-top:14px;color:#D9CDE6;font-size:14px;max-width:34em}
+.trailer{margin-top:clamp(28px,4vw,44px);max-width:880px}
+.trailer video{width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--brass);box-shadow:inset 0 0 0 3px var(--stone-deep)}
+.trailer p{font-size:13px;color:#CFC4DC;margin-top:6px}
 .shots{margin-top:clamp(28px,4vw,44px)}
 .shots .strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 14px;margin:0 calc(var(--gut)*-1);scrollbar-width:thin;scrollbar-color:var(--brass-dim) transparent}
 .shots figure{margin:0;flex:0 0 min(560px,84%);scroll-snap-align:start}
@@ -224,7 +227,13 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
     <p class="facts">5人チームで2026年2月から制作。自分は企画から実装までを担当していて、制作時間は1800時間を超えました。</p>
     <div class="actions">
       <a class="slot gold" href="https://store.steampowered.com/app/4859690/DIMAZE/" target="_blank" rel="noopener">Steamストアで見る</a>
-      <a class="slot" href="https://youtu.be/8Q6oLyJZZ28" target="_blank" rel="noopener">進捗動画（YouTube）</a>
+      <a class="slot" href="#trailer">トレーラーを見る</a>
+    </div>
+    <div class="trailer" id="trailer">
+      <video controls playsinline preload="none" poster="images/trailer_poster.jpg">
+        <source src="images/trailer.mp4" type="video/mp4">
+      </video>
+      <p>Steam Next Fest用のトレーラー（56秒・音が出ます）</p>
     </div>
     <div class="shots">
       <div class="strip">
