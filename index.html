@@ -91,6 +91,28 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
 .mypart li b{display:block}
 .mypart li span{color:var(--ink-soft);font-size:15px}
 
+
+/* ---------- how I work ---------- */
+.craft{padding-top:clamp(64px,9vw,120px)}
+.craft > h2{font-size:clamp(28px,4vw,44px)}
+.craft .lede{color:var(--ink-soft);margin-top:8px;max-width:36em}
+.craft .pair{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:center;margin-top:clamp(32px,4vw,48px)}
+.craft .pair.flip{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.craft h3{font-size:clamp(20px,2.6vw,26px);margin-bottom:12px}
+.craft p+p{margin-top:1em}
+.craft figure{margin:0}
+.craft figure img{width:100%;border:1px solid var(--brass-dim);transform:rotate(-1.2deg)}
+.craft figcaption{font-size:13px;color:var(--ink-soft);margin-top:10px}
+.prompt{background:var(--stone-deep);border:1px solid var(--brass-dim);box-shadow:inset 0 0 0 3px var(--stone-deep),inset 0 0 0 4px #2E3450;padding:clamp(18px,3vw,28px);font-size:15px;line-height:1.9}
+.prompt .who{font-size:13px;color:var(--brass);margin-bottom:8px}
+.prompt mark{background:none;color:var(--ink);border-bottom:2px solid var(--brass)}
+.why{margin:18px 0 0;padding:0;list-style:none;counter-reset:w}
+.why li{position:relative;padding:10px 0 10px 34px;border-bottom:1px solid var(--stone-lift)}
+.why li::before{counter-increment:w;content:counter(w);position:absolute;left:0;top:10px;width:22px;height:22px;display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--stone-deep);background:var(--brass)}
+.why b{display:block}
+.why span{color:var(--ink-soft);font-size:15px}
+@media (max-width:760px){.craft .pair,.craft .pair.flip{grid-template-columns:minmax(0,1fr)}}
+
 /* ---------- works shelves ---------- */
 .works{padding-top:clamp(64px,9vw,120px)}
 .works > .wrap > h2{font-size:clamp(28px,4vw,44px)}
@@ -165,6 +187,7 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
     <a class="me" href="#top">舘﨑 慶</a>
     <a href="#dimaze">DIMAZE</a>
     <a href="#works">作品</a>
+    <a href="#craft">作り方</a>
     <a href="#contact">連絡先</a>
   </nav>
   <div class="hero-text wrap">
@@ -227,6 +250,8 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
   </div>
 </section>
 
+
+
 <section class="works" id="works">
   <div class="wrap">
     <h2>作品</h2>
@@ -241,6 +266,40 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
         <p><a href="https://alkaline-plutonium-25d.notion.site/52e0038ab0bd82cdae3381b890c77692" target="_blank" rel="noopener">没にした理由を読む</a></p>
       </div>
     </aside>
+  </div>
+</section>
+
+<section class="craft wrap" id="craft">
+  <h2>どうやって作っているか</h2>
+  <p class="lede">アイデアを出すところから、AIに頼んで形にするところまで、普段のやり方をそのまま載せます。</p>
+
+  <div class="pair">
+    <figure>
+      <img src="images/memo.jpg" alt="レシートロールの切れ端に手書きしたゲームのアイデアメモ" loading="lazy">
+      <figcaption>バイト中に書いたメモ。壺を壊すとたまにアイテムが出る仕組み、DNAをつなぐパズル、ボスの骨格の流用など</figcaption>
+    </figure>
+    <div>
+      <h3>思いついたら、その場で書く</h3>
+      <p>セブンイレブンのバイト中、手が空いたときは、レシートロールの捨てる部分にアイデアを書いています。家に帰ったら、それを見ながらその日のうちに試します。</p>
+      <p>電車や歩いている間は、スマホのメモにイメージを書き出しています。技の流れ、ダンジョンの形、気になったバグの原因の予想まで、思いついた順に全部です。</p>
+      <p>机に向かっている時間だけがゲーム作りではない、と思っています。</p>
+    </div>
+  </div>
+
+  <div class="pair flip">
+    <div class="prompt-side">
+      <h3>AIには「設計から」頼む</h3>
+      <p>プログラムの多くはClaude（AI）と対話しながら書いています。そのぶん、何を作るかと、どこを妥協しないかは自分で決めます。「属性鉱石」を作ったときに最初に送った文章を、そのまま載せています。</p>
+      <ol class="why">
+        <li><b>数字まで決めてから頼む</b><span>鉱石の体力は6、剣なら2・拳なら1削れる、のように手触りを左右する数字は自分で決める。</span></li>
+        <li><b>例外を先に書く</b><span>「杖では壊せない」「雷の効果は武器だけで、スキルには乗せない」。あとから直すと大きな手戻りになるところ。</span></li>
+        <li><b>いきなり作らせない</b><span>最後は必ず「まずは設計をお願い」。設計を読んで納得してから作ってもらい、最後は自分の目で遊んで確かめる。</span></li>
+      </ol>
+    </div>
+    <div class="prompt">
+      <div class="who">実際に送ったプロンプト</div>
+      ダンジョンに色どりを付けるために、鉱石を追加しようとおもう。壊すと、自分に数十秒能力がつくっている鉱石を3つね。雷と炎と毒。<mark>体力は6で武器によって与えるダメージを変えたい。剣は2で拳は1。杖だと壊れないようにしてほしい。</mark>魔法によってはダメージを与えられるようにしてほしい。見た目は君に作って欲しい。壊したら、Player自身に能力とエフェクトがつき、持ってる武器が対応してたら能力がつくようにしてほしい。（中略）<mark>雷は全部クリティカルになる。これは武器にしかつかないから、スキルとかには使われないようにしたい。</mark>あと能力は重複可。Playerの見た目が変化するようにしたい。<mark>まずは設計をお願い。</mark>
+    </div>
   </div>
 </section>
 
