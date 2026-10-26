@@ -142,6 +142,10 @@ li::marker { color: var(--accent); }
   padding: 10px 16px; border-radius: 999px; background: var(--fg); color: var(--bg);
   box-shadow: 0 4px 16px rgba(0,0,0,.18);
 }
+.media { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.clip { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.clip video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: #000; display: block; }
+.clip figcaption { font-size: 14px; color: var(--muted); }
 @media (max-width: 480px) {
   body { font-size: 16px; }
   .lead { font-size: 17px; }
@@ -251,6 +255,20 @@ li::marker { color: var(--accent); }
   <section id="dimaze">
     <div class="head"><p class="kicker">DIMAZE</p><h2>敵の魔法は、ぜんぶ奪える</h2></div>
     <p class="lead">敵の魔法を吸って、撃ち返す。終わりのない迷宮を登るアクションローグライトです。核になる感情は「俺のものだ」。</p>
+    <div class="media">
+      <figure class="clip">
+        <video src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4859690/extras/531bb7bf50d62f8b681fc55b2d862b19.mp4" autoplay muted loop playsinline preload="metadata" aria-label="敵の魔法を吸う"></video>
+        <figcaption>敵の魔法を吸う</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4859690/extras/da5c9156247e8ef69a782b7ff052c765.mp4" autoplay muted loop playsinline preload="metadata" aria-label="奪った力を剣に宿す"></video>
+        <figcaption>奪った力を剣に宿す</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4859690/extras/5c4ff5a753689f358787b205994b2a78.mp4" autoplay muted loop playsinline preload="metadata" aria-label="流れを止めずに戦う"></video>
+        <figcaption>流れを止めずに戦う</figcaption>
+      </figure>
+    </div>
     <div class="cols">
       <div class="box">
         <h3>仕組み</h3>
