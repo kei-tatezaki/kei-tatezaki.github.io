@@ -149,6 +149,9 @@ li::marker { color: var(--accent); }
 .step img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; background: var(--chip); }
 .step figcaption { font-size: 14px; line-height: 1.5; }
 .step figcaption span { display: block; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--accent); font-variant-numeric: tabular-nums; }
+.wide { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.wide video { width: 100%; height: auto; border-radius: 10px; background: #000; display: block; }
+.wide figcaption { font-size: 14px; color: var(--muted); }
 .media { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .clip { margin: 0; display: grid; gap: 6px; min-width: 0; }
 .clip video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: #000; display: block; }
@@ -385,6 +388,10 @@ li::marker { color: var(--accent); }
         </ul>
       </div>
     </div>
+    <figure class="wide">
+      <video src="img/drainhole_before_after.mp4" poster="img/drainhole_poster.jpg" autoplay muted loop playsinline preload="metadata" width="1280" height="360" aria-label="吸う渦の見た目、修正前と修正後"></video>
+      <figcaption>直している最中：吸う渦の見た目。前半は修正前（左）と修正後（右）、後半は修正後を正面から（2026年10月25日）</figcaption>
+    </figure>
     <p class="takeaway goal">「吸って撃ち返す」を、気持ちいいだけでなく、進むために必要な行動にする</p>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
