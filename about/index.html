@@ -142,6 +142,12 @@ li::marker { color: var(--accent); }
   padding: 10px 16px; border-radius: 999px; background: var(--fg); color: var(--bg);
   box-shadow: 0 4px 16px rgba(0,0,0,.18);
 }
+.sub { font-size: 18px; }
+.hist { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.step { margin: 0; display: grid; gap: 4px; min-width: 0; }
+.step img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; background: var(--chip); }
+.step figcaption { font-size: 14px; line-height: 1.5; }
+.step figcaption span { display: block; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--accent); font-variant-numeric: tabular-nums; }
 .media { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .clip { margin: 0; display: grid; gap: 6px; min-width: 0; }
 .clip video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: #000; display: block; }
@@ -333,6 +339,33 @@ li::marker { color: var(--accent); }
       <span>話せるAI×無限迷宮</span><i>→</i><span>パリィ</span><i>→</i><span>ジャスト回避</span><i>→</i><span>ホログラムのデコイ</span><i>→</i><span class="on">敵の魔法を吸う</span>
     </div>
     <p class="muted">重すぎる、独自性がない、分かりにくい。その判断で4回捨てた。学校には「TGSに出す」と宣言していて、引き返せなかった。</p>
+    <h3 class="sub">8か月の進化</h3>
+    <div class="hist">
+      <figure class="step">
+        <img src="img/h1_0513.jpg" alt="2026.05 灰色の通路で戦闘" loading="lazy" width="640" height="360">
+        <figcaption><span>2026.05</span>灰色の通路で戦闘</figcaption>
+      </figure>
+      <figure class="step">
+        <img src="img/h2_0605.jpg" alt="2026.06 ジャスト回避の試作" loading="lazy" width="640" height="360">
+        <figcaption><span>2026.06</span>ジャスト回避の試作</figcaption>
+      </figure>
+      <figure class="step">
+        <img src="img/h3_0702.jpg" alt="2026.07 拠点と契約金の試作" loading="lazy" width="640" height="360">
+        <figcaption><span>2026.07</span>拠点と契約金の試作</figcaption>
+      </figure>
+      <figure class="step">
+        <img src="img/h4_0713.jpg" alt="2026.07 魔法エフェクトの試作" loading="lazy" width="640" height="360">
+        <figcaption><span>2026.07</span>魔法エフェクトの試作</figcaption>
+      </figure>
+      <figure class="step">
+        <img src="img/h5_0819.jpg" alt="2026.08 紫の渦が生まれる" loading="lazy" width="640" height="360">
+        <figcaption><span>2026.08</span>紫の渦が生まれる</figcaption>
+      </figure>
+      <figure class="step">
+        <img src="img/h6_1014.jpg" alt="2026.10 火球を吸い込む最初の版" loading="lazy" width="640" height="360">
+        <figcaption><span>2026.10</span>火球を吸い込む最初の版</figcaption>
+      </figure>
+    </div>
     <div class="cols">
       <div class="box">
         <h3>捨てた要素</h3>
