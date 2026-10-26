@@ -143,7 +143,8 @@ li::marker { color: var(--accent); }
   box-shadow: 0 4px 16px rgba(0,0,0,.18);
 }
 .sub { font-size: 18px; }
-.hist { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.hist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 600px) { .hist { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .step { margin: 0; display: grid; gap: 4px; min-width: 0; }
 .step img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; background: var(--chip); }
 .step figcaption { font-size: 14px; line-height: 1.5; }
