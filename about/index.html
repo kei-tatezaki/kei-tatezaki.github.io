@@ -156,6 +156,13 @@ li::marker { color: var(--accent); }
 .clip { margin: 0; display: grid; gap: 6px; min-width: 0; }
 .clip video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: #000; display: block; }
 .clip figcaption { font-size: 14px; color: var(--muted); }
+.more { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 0 16px; }
+.more summary { cursor: pointer; padding: 10px 0; font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--muted); list-style: none; }
+.more summary::-webkit-details-marker { display: none; }
+.more summary::before { content: "▶ "; font-size: 11px; }
+.more[open] summary::before { content: "▼ "; }
+.more ul { padding-bottom: 14px; font-size: 15px; }
+.box > p { font-size: 17px; font-weight: 500; }
 @media (max-width: 480px) {
   body { font-size: 16px; }
   .lead { font-size: 17px; }
@@ -168,6 +175,7 @@ li::marker { color: var(--accent); }
 </head>
 <body>
 
+
 <header class="bar">
   <div class="bar-in">
     <a class="bar-name" href="#top">舘﨑 慶</a>
@@ -178,35 +186,37 @@ li::marker { color: var(--accent); }
 <main class="wrap" id="top">
 
   <div class="hero">
-    <p class="who">国際理工カレッジ ゲームクリエイター科（2028年3月卒業予定）｜プランナー兼プログラマー</p>
+    <p class="who">国際理工カレッジ ゲームクリエイター科 2年｜プランナー兼プログラマー</p>
     <h1>自分が作ったゲームの世界で、人々が<em>生活する未来</em>を作る</h1>
-    <p class="lead">企画意図を仕様に落とし、実装までやり切ります。3Dアクションを企画から発売まで、ほぼ1人で回せます。</p>
     <div class="chips">
+      <span class="chip">企画から実装まで1人で回せる</span>
       <span class="chip">Unity / C# 1,800時間以上</span>
-      <span class="chip">Claude・Unity MCP 約300時間</span>
       <span class="chip">Steamで体験版公開中</span>
     </div>
     <div class="cols">
       <div class="box">
         <h3>夢</h3>
-        <p>老若男女、世界の隅々の人が、自分の作った世界で働き、物を売り買いし、暮らしていく。戦う人も、作る人も、商う人も、それぞれの職業が一つの目標に向かってつながる世界。</p>
+        <ul>
+          <li>誰もがゲームの世界で働き、売り買いし、暮らす</li>
+          <li>戦う人・作る人・商う人がつながる世界</li>
+        </ul>
       </div>
       <div class="box">
         <h3>作ったもの</h3>
         <ul>
-          <li><b>DIMAZE</b>（Unity）敵の魔法を吸って撃ち返すローグライト。2027年1月リリース予定</li>
-          <li><b>Katana vs Yokai</b>（Roblox・個人）刀で妖怪と戦う対戦アクション。制作中</li>
-          <li><b>コーギーゴージャス</b>（Unity）千葉興銀の産学連携企画へのエントリー作品。5人</li>
-          <li><b>BugBugSinSin</b>（Siv3D）バンダイナムコ杯のゲームジャム。3人</li>
-          <li><b>倉庫番</b>（Unity・個人）8時間</li>
+          <li><b>DIMAZE</b>：Steam体験版公開中（2027年1月発売予定）</li>
+          <li><b>Katana vs Yokai</b>：Roblox、制作中</li>
+          <li><b>コーギーゴージャス</b>：産学連携企画にエントリー</li>
+          <li><b>BugBugSinSin</b>：バンダイナムコ杯ジャム</li>
+          <li><b>倉庫番</b>：個人、8時間</li>
         </ul>
       </div>
       <div class="box">
         <h3>動き方</h3>
         <ul>
-          <li>小さく作って検証。試作を早く作り、直すサイクルを回す</li>
+          <li>小さく作って検証</li>
           <li>AIで学びながら作る</li>
-          <li>出して、反応を見て、自分の甘さに気づいて直す</li>
+          <li>出して、甘さに気づいて、直す</li>
         </ul>
       </div>
     </div>
@@ -222,7 +232,7 @@ li::marker { color: var(--accent); }
       <a href="#roblox"><b>Katana vs Yokai</b><span>Robloxで同時進行中の新作</span></a>
       <a href="#llm"><b>ローカルLLMのNPC</b><span>作って分かった限界</span></a>
       <a href="#smith"><b>作りたいゲーム</b><span>異世界鍛冶屋（仮）</span></a>
-      <a href="#monopoly"><b>課題：MONOPOLY GO!</b><span>提出したヒットの理由と改善案</span></a>
+      <a href="#monopoly"><b>課題：MONOPOLY GO!</b><span>ヒットの理由と改善案</span></a>
       <a href="#games"><b>好きな作品・遊んだゲーム</b><span>リゼロ、プロセカほか</span></a>
     </nav>
   </section>
@@ -230,41 +240,48 @@ li::marker { color: var(--accent); }
   <section id="why">
     <div class="head"><p class="kicker">動機</p><h2>なぜプランナー、なぜサイバーエージェント</h2></div>
     <div class="flow" aria-label="きっかけの流れ">
-      <span>小学生：SAO</span><i>→</i>
-      <span>中学生：異世界のんびり系、レディ・プレイヤー1</span><i>→</i>
-      <span class="on">高校：プランナーという職業を知る</span>
+      <span>SAO</span><i>→</i>
+      <span>戦うだけじゃない</span><i>→</i>
+      <span class="on">ゲーム全体に関われる仕事</span>
     </div>
-    <p class="muted">中学生のころ、戦うことだけがゲームの楽しさではないと気づいた。世界の中で働いて、暮らすこと自体が遊びになる。</p>
     <div class="cols">
       <div class="box">
         <h3>なぜサイバーエージェント</h3>
         <ul>
-          <li>実力が認められれば、若いうちから大きな仕事を任せてもらえる</li>
-          <li>広告で人を集める力と、多くのタイトルを運営してきた知見が一つのグループにある</li>
-          <li>スマホ発のタイトルが海外やPCへ広がっている。作りたい世界に一番近い</li>
+          <li>若手に任せる文化</li>
+          <li>広告で人を集める力×運営の知見</li>
+          <li>スマホから海外・PCへ</li>
         </ul>
       </div>
       <div class="box">
         <h3>キャンプで得たいこと</h3>
         <ul>
-          <li>現役のプランナーに分析と企画を厳しく見てもらい、足りないものを早く知る</li>
-          <li>一緒に世界を作りたいと思える人に出会う</li>
+          <li>現役プランナーの厳しい目</li>
+          <li>一緒に作りたい人との出会い</li>
         </ul>
       </div>
       <div class="box">
         <h3>この先</h3>
         <ul>
-          <li>結果を出して信頼を得て、自分の事業を任される人になる</li>
-          <li>3年目ごろにはSteamのタイトルに力を入れたい</li>
+          <li>結果を出して、事業を任される人に</li>
+          <li>3年目ごろSteamに力を入れる</li>
         </ul>
       </div>
     </div>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>小学生でSAOを見て、現実を全部忘れられるゲームの世界に惹かれた</li>
+        <li>中学生で異世界のんびり系やレディ・プレイヤー1を見て、戦闘だけが全てではなく、世界で働いて暮らすこと自体が遊びになると気づいた</li>
+        <li>ゲームクリエイターは全部やる仕事だと思っていたが、調べると仕事が分かれていた。全部に関わりたかったので、プランナーに目が行った</li>
+        <li>若いうちから結果を出して仕事を任せてもらい、作りたい世界を早く形にしたい</li>
+      </ul>
+    </details>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
 
   <section id="dimaze">
     <div class="head"><p class="kicker">DIMAZE</p><h2>敵の魔法は、ぜんぶ奪える</h2></div>
-    <p class="lead">敵の魔法を吸って、撃ち返す。終わりのない迷宮を登るアクションローグライトです。核になる感情は「俺のものだ」。</p>
+    <p class="lead">吸って、撃ち返す。終わりのない迷宮のアクションローグライト</p>
     <div class="media">
       <figure class="clip">
         <video src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4859690/extras/531bb7bf50d62f8b681fc55b2d862b19.mp4" autoplay muted loop playsinline preload="metadata" aria-label="敵の魔法を吸う"></video>
@@ -283,31 +300,38 @@ li::marker { color: var(--accent); }
       <div class="box">
         <h3>仕組み</h3>
         <ul>
-          <li>敵の魔法を吸うと、魔力になる</li>
-          <li>敵の魔法陣を吸うと、その魔法を覚える</li>
-          <li>覚えた魔法は、奪った魔力で撃つ</li>
-          <li>剣や突進は吸えない。だから判断が生まれる</li>
+          <li>魔法を吸う → 魔力</li>
+          <li>魔法陣を吸う → 魔法を覚える</li>
+          <li>剣や突進は吸えない</li>
         </ul>
       </div>
       <div class="box">
         <h3>体制と担当</h3>
         <ul>
-          <li>2026年2月制作開始。7人で始め、今は自分＋デザイナー2人</li>
-          <li>抜けたメンバーの分の企画・実装も引き受け、体験版の公開までやり切った</li>
-          <li>担当：企画・ゲームデザイン、プログラム、演出・エフェクト、Steamページとトレーラー</li>
-          <li>似ている作品：カービィ、転スラのリムルの捕食者</li>
+          <li>7人で開始 → 今は自分＋デザイナー2人</li>
+          <li>デザイン以外ぜんぶ担当</li>
+          <li>似ている作品：カービィ、リムル</li>
         </ul>
       </div>
       <div class="box">
         <h3>チームで工夫したこと</h3>
         <ul>
-          <li>絵が描けないので、言葉・スライド・試作で伝える</li>
-          <li>物語の規模を、学生が作り切れる大きさに絞った。入れたい要素の実装時間を説明して、デザイナーに納得してもらった</li>
-          <li>海外の3Dデザイナーとは、こまめに確認して期限を守ってもらった</li>
-          <li>途中のデータを残す仕組みがなく、作り直しをさせてしまった。今は段階ごとに確認している</li>
+          <li>言葉・スライド・試作で伝える</li>
+          <li>物語を作り切れる規模に絞る</li>
+          <li>段階ごとに確認する</li>
         </ul>
       </div>
     </div>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>核になる感情は「俺のものだ」。覚えた魔法は、奪った魔力で撃つ。剣と魔法で答えが分かれるから判断が生まれる</li>
+        <li>2026年2月制作開始。本気度の差でメンバーが抜け、抜けた分の企画・実装は自分が引き受けて体験版の公開までやり切った</li>
+        <li>担当：企画・ゲームデザイン、プログラム、演出・エフェクト、Steamページとトレーラー</li>
+        <li>絵が描けないので、AIで叩き台を作って見せる。最終的なデザインはデザイナーに任せる</li>
+        <li>入れたい要素の実装時間を説明して、物語の規模にデザイナーの納得をもらった</li>
+        <li>途中のデータを残す仕組みがなく作り直しをさせてしまった反省から、今は段階ごとに確認している。海外の3Dデザイナーとは、こまめな確認で期限を守ってもらった</li>
+      </ul>
+    </details>
     <div class="links">
       <a href="https://docs.google.com/presentation/d/1sA1PjinIiqWhyE5HVi82TDxOZx-DfWrnDeoYMIeoNng/edit" target="_blank" rel="noopener">DIMAZE企画書（24枚）</a>
       <a href="https://store.steampowered.com/app/4859690/DIMAZE/" target="_blank" rel="noopener">Steamストアページ</a>
@@ -318,22 +342,29 @@ li::marker { color: var(--accent); }
   <section id="result">
     <div class="head"><p class="kicker">DIMAZEの結果（2026年10月26日時点）</p><h2>伸びてはいる。でも、まだ甘い</h2></div>
     <div class="nums">
-      <div class="num"><b>1,187</b><small>体験版を入手した人</small></div>
-      <div class="num hl"><b>103</b><small>ウィッシュリスト（公開直後は32）</small></div>
+      <div class="num"><b>1,187</b><small>体験版の入手</small></div>
+      <div class="num hl"><b>32 → 103</b><small>ウィッシュリスト</small></div>
     </div>
-    <p>原因は、売りの「吸って撃ち返す」の見せ方と、使う必要性の作り込みが甘かったこと。</p>
     <div class="cols">
       <div class="box">
-        <h3>触っても、すぐ飽きる</h3>
-        <p>吸って撃ち返す体験はあるが、使う理由が薄い。剣だけで進めてしまい、メインアクションが必須になっていない。</p>
+        <h3>やめる理由①</h3>
+        <p>触っても、すぐ飽きる</p>
       </div>
       <div class="box">
-        <h3>触る前に「何のゲーム？」でやめる</h3>
-        <p>最初の数分で、吸って撃ち返す気持ちよさに届かない。売りが見える前に離れてしまう。</p>
+        <h3>やめる理由②</h3>
+        <p>触る前に「何のゲーム？」でやめる</p>
       </div>
     </div>
-    <p class="muted">スクウェア・エニックスの方には「プロが気をつける所はほとんど押さえられている」と言ってもらえた。完成度は誇れる。足りないのは、核の見せ方。</p>
-    <p class="takeaway">面白さの核は、プレイヤーが使わざるを得ない形で最初の数分に置く</p>
+    <p class="takeaway">面白さの核を、最初の数分に置く</p>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>原因は、売りの「吸って撃ち返す」の見せ方と、使う必要性の作り込みが甘かったこと</li>
+        <li>①吸う理由が薄く、剣だけで進めてしまう。メインアクションが必須になっていない</li>
+        <li>②最初の数分で、吸って撃ち返す気持ちよさに届かない</li>
+        <li>2か月直してネクストフェスに出し、32件から103件に伸びた。直したのは、渦を小さく、吸った魔法が魔力の粒になって吸われる演出、初めての魔法陣を吸ったときに画面中央に表示してからホットバーへ動かす視線誘導</li>
+        <li>スクウェア・エニックスの方には「プロが気をつける所はほとんど押さえられている」と言ってもらえた</li>
+      </ul>
+    </details>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
 
@@ -342,7 +373,6 @@ li::marker { color: var(--accent); }
     <div class="flow" aria-label="企画の変遷">
       <span>話せるAI×無限迷宮</span><i>→</i><span>パリィ</span><i>→</i><span>ジャスト回避</span><i>→</i><span>ホログラムのデコイ</span><i>→</i><span class="on">敵の魔法を吸う</span>
     </div>
-    <p class="muted">重すぎる、独自性がない、分かりにくい。その判断で4回捨てた。学校には「TGSに出す」と宣言していて、引き返せなかった。</p>
     <h3 class="sub">8か月の進化</h3>
     <div class="hist">
       <figure class="step">
@@ -374,129 +404,154 @@ li::marker { color: var(--accent); }
       <div class="box">
         <h3>捨てた要素</h3>
         <ul>
-          <li><b>疲労ゲージ</b>：戦い続けることが遊びの中心なのに、止めるだけの仕組みになり不快</li>
-          <li><b>NPCの仲間、納品、世界観</b>：物語を安定させるには作る量が膨らむ。今の規模では無理</li>
+          <li>疲労ゲージ</li>
+          <li>NPCの仲間・納品・世界観</li>
         </ul>
-        <p class="muted">捨てた要素は、異世界鍛冶屋の核として残している。</p>
       </div>
       <div class="box">
         <h3>次の改善</h3>
         <ul>
-          <li><b>吸う操作を右クリックに</b>：いつでも触れる位置に置く</li>
-          <li><b>剣だけでは進めないギミック</b>：吸った魔法でしか壊せない仕掛けや敵</li>
-          <li><b>吸うと薬草・強化素材が採れる</b>：戦闘以外の報酬で、繰り返し触らせる</li>
+          <li>吸う操作を右クリックに</li>
+          <li>剣だけでは進めないギミック</li>
+          <li>吸うと薬草・強化素材</li>
+          <li>毎回クエストが変わるダンジョン</li>
         </ul>
       </div>
     </div>
     <figure class="wide">
       <video src="img/drainhole_before_after.mp4" poster="img/drainhole_poster.jpg" autoplay muted loop playsinline preload="metadata" width="1280" height="360" aria-label="吸う渦の見た目、修正前と修正後"></video>
-      <figcaption>直している最中：吸う渦の見た目。前半は修正前（左）と修正後（右）、後半は修正後を正面から（2026年10月25日）</figcaption>
+      <figcaption>吸う渦の見た目：修正前（左）→ 修正後（右）</figcaption>
     </figure>
-    <p class="takeaway goal">「吸って撃ち返す」を、気持ちいいだけでなく、進むために必要な行動にする</p>
+    <p class="takeaway goal">「吸って撃ち返す」を、進むために必要な行動にする</p>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>重すぎる、独自性がない、分かりにくい。その判断で4回捨てた。学校には「TGSに出す」と宣言していて、引き返せなかった</li>
+        <li>疲労ゲージ：戦い続けることが遊びの中心なのに、止めるだけの仕組みになり不快</li>
+        <li>NPCの仲間・納品・世界観：物語を安定させるには作る量が膨らむ。今の規模では無理。異世界鍛冶屋の核として残している</li>
+        <li>右クリック：いつでも触れる位置に置く。ギミック：吸った魔法でしか壊せない仕掛けや敵。素材：戦闘以外の報酬で繰り返し触らせる</li>
+        <li>部屋が枝分かれするダンジョンに加えて、フィールド型も作る。出てくるものでクエストが変わる</li>
+        <li>AIにダンジョンを実装させている間に、自分はメインアクションの気持ちよさを詰めている</li>
+      </ul>
+    </details>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
 
   <section id="roblox">
     <div class="head"><p class="kicker">同時進行中：Katana vs Yokai（Roblox）</p><h2>DIMAZEで捨てたパリィを、Robloxで形にする</h2></div>
-    <p class="lead">刀で妖怪と戦う対戦アクションを、Robloxで1人で作っています。対戦とブレインロット系の遊びを掛け合わせ、刀のパリィを入れます。2週間の休みのうち1週間でメインアクションを作り、残りでボリュームを足して公開する予定です。</p>
+    <p class="lead">刀で妖怪と戦う対戦アクション。1人で制作、2週間で公開予定</p>
     <div class="cols">
       <div class="box">
         <h3>なぜRoblox</h3>
         <ul>
-          <li>市場が伸びていて、タグを付けるだけで多くの人に見てもらえる</li>
-          <li>プレイヤーのモデルを作らなくていい。見た目が統一されていれば、粗が目立たない</li>
-          <li>対戦×ブレインロットは、まだ競合が少ない</li>
-          <li>DIMAZEでは独自性が足りず捨てたパリィも、ここなら活かせる</li>
+          <li>タグだけで見てもらえる</li>
+          <li>モデル不要、粗が目立たない</li>
+          <li>対戦×ブレインロットは競合が少ない</li>
+          <li>捨てたパリィを活かせる</li>
         </ul>
       </div>
       <div class="box">
-        <h3>なぜDIMAZEと同時に</h3>
+        <h3>なぜ同時に</h3>
         <ul>
-          <li>卒業まで残り1年。出せるものは全部出したい</li>
-          <li>AIに実装させている間の待ち時間がもったいない。学校のPCと家のPCで、2本を同時に進めている</li>
+          <li>卒業まで残り1年</li>
+          <li>AIの実装待ちの時間を使う</li>
         </ul>
       </div>
       <div class="box">
         <h3>進め方</h3>
         <ul>
-          <li>見た目の判断は自分、実装はClaude（Roblox Studio・BlenderにMCPで接続）</li>
-          <li>作る前に構図を図にして、角度を数字で決めてから作る</li>
+          <li>判断は自分、実装はAI</li>
+          <li>図で合意してから作る</li>
         </ul>
       </div>
     </div>
-    <div class="box">
-      <h3>違和感を言葉にして直した例</h3>
+    <details class="more"><summary>詳しく</summary>
       <ul>
-        <li><b>刀を横から掴んでいるように見える</b>：刃が内側を向いていた → 握りを90°回し、刃を下向きに</li>
-        <li><b>走りがゾンビっぽい</b>：腰と胸で折れて猫背、首が突き出ていた → 全力疾走の動きに差し替え、背中をまっすぐに</li>
-        <li><b>走ると首が振れすぎる</b>：人は走るとき目線を固定する → 胸のひねりを首で打ち消し、頭の向きを固定</li>
+        <li>2週間の休みのうち1週間でメインアクションを作り、残りでボリュームを足して公開</li>
+        <li>学校のPCと家のPCで、DIMAZEとRobloxの2本を同時に進めている</li>
+        <li>実装はClaude（Roblox Studio・BlenderにMCPで接続）。作る前に構図を図にして、角度を数字で決める</li>
+        <li>刀を横から掴んでいるように見える → 刃が内側を向いていた。握りを90°回して刃を下向きに</li>
+        <li>走りがゾンビっぽい → 腰と胸で折れて猫背だった。全力疾走の動きに差し替えて背中をまっすぐに</li>
+        <li>走ると首が振れすぎる → 胸のひねりを首で打ち消し、頭の向きを固定</li>
       </ul>
-    </div>
+    </details>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
 
   <section id="llm">
-    <div class="head"><p class="kicker">DIMAZEの最初の形</p><h2>LLMは、足す部品ではなく中心に据えないと成立しない</h2></div>
+    <div class="head"><p class="kicker">DIMAZEの最初の形</p><h2>LLMは、中心に据えないと成立しない</h2></div>
     <div class="cols">
       <div class="box">
         <h3>やったこと</h3>
         <ul>
-          <li>Qwen・Llamaをローカルで動かし、Unity内のNPCと会話</li>
-          <li>3D空間を歩いて話しかけ、仲間にしてついて来させるまで実装</li>
-          <li>企画書づくりも含めて約200時間。Unityを始めて50時間ほどのころから</li>
+          <li>ローカルLLMでNPCと会話</li>
+          <li>仲間にしてついて来させる</li>
+          <li>約200時間</li>
         </ul>
       </div>
       <div class="box">
         <h3>ぶつかった壁</h3>
         <ul>
-          <li>最初に設定を渡すだけでは会話にならない。会話の履歴を全部読み込ませて、ようやくまともに話せる</li>
-          <li>履歴を送らない軽い形でも、会話しているだけでUnity Editorが約2,000MB使う</li>
+          <li>会話の履歴を全部読ませないと話せない</li>
+          <li>軽くしても約2,000MB</li>
         </ul>
       </div>
       <div class="box">
-        <h3>判断と、その後</h3>
+        <h3>判断</h3>
         <ul>
-          <li>1か月で没。残った戦闘の基礎と自動生成が今のDIMAZEになった</li>
-          <li>ついでのクエスト生成は意味がないと判断し、作らなかった</li>
-          <li>異世界鍛冶屋では、LLMを会話に使わず「出来事を作る役」だけにした</li>
+          <li>1か月で没 → 今のDIMAZEへ</li>
+          <li>鍛冶屋では「出来事を作る役」だけ</li>
         </ul>
       </div>
     </div>
-    <p class="takeaway one">作ってから判断する。作る前に判断しない</p>
+    <p class="takeaway one">作ってから判断する</p>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>Qwen・Llamaをローカルで動かし、Unity内のNPCと会話。3D空間を歩いて話しかけ、仲間にしてついて来させるまで実装。Unityを始めて50時間ほどのころから</li>
+        <li>最初に設定を渡すだけでは会話にならない。履歴を送らない軽い形でも、会話しているだけでUnity Editorが約2,000MB使う</li>
+        <li>残った戦闘の基礎と自動生成が今のDIMAZEになった。ついでのクエスト生成は意味がないと判断し、作らなかった</li>
+      </ul>
+    </details>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
 
   <section id="smith">
     <div class="head"><p class="kicker">作りたいゲーム：異世界鍛冶屋（仮）</p><h2>薪割りから成り上がり、作った物で世界の経済を動かす</h2></div>
-    <p class="lead">一番ワクワクする瞬間は、自分の作った物が、遠くの国の出来事で一晩で何倍もの値段になること。寒波が来れば、薪が一晩で10倍。</p>
+    <p class="lead">寒波が来れば、薪が一晩で10倍</p>
     <div class="flow" aria-label="遊びの流れ">
       <span>作る</span><i>→</i><span>売る</span><i>→</i><span>世界が動く</span><i>→</i><span class="on">経済を動かす</span>
     </div>
     <div class="cols">
       <div class="box">
-        <h3>遊びのルール</h3>
+        <h3>遊び</h3>
         <ul>
-          <li>ほのぼのトゥーン調の経営ゲーム。1〜4人協力、まずSteam</li>
-          <li>戦争・災害・流行で、値段が毎秒動く</li>
-          <li>毎朝、土地代と給料が引かれる。マイナスなら「最後の一日」。戻せなければ店じまいして、腕前だけ持って薪割りから再挑戦</li>
+          <li>ほのぼの経営、1〜4人協力</li>
+          <li>出来事で値段が毎秒動く</li>
+          <li>店じまい → 腕前だけ持って再挑戦</li>
         </ul>
       </div>
       <div class="box">
         <h3>なぜ鍛冶屋か</h3>
         <ul>
-          <li>ゲーム市場で常に一番大きいのは作業ゲーム。黙々と作る遊びは層が広い</li>
-          <li>作る、売る、世界が動く。この循環が一番わかりやすい職業</li>
-          <li>LLMは出来事を作る役だけ。戦争 → 鉄不足 → 鉱山町が好景気、のように連鎖させる</li>
+          <li>一番大きい市場は作業ゲーム</li>
+          <li>作る→売る→動く が分かりやすい</li>
         </ul>
       </div>
       <div class="box">
         <h3>作る順番</h3>
         <ul>
-          <li>薪割り → 薪の市場と値動き → 機材と注目度 → 炉と部品 → 雇用と店じまい</li>
-          <li>まだ作らない：戦闘、複数の町、スマホ版、課金</li>
+          <li>まず薪割りと値動き</li>
+          <li>戦闘・課金はまだ作らない</li>
         </ul>
       </div>
     </div>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>一番ワクワクする瞬間は、自分の作った物が、遠くの国の出来事で一晩で何倍もの値段になること</li>
+        <li>毎朝、土地代と給料が引かれる。マイナスなら「最後の一日」。戻せなければ店じまい</li>
+        <li>LLMは出来事を作る役だけ。戦争 → 鉄不足 → 鉱山町が好景気、のように連鎖させる。値段の計算はゲーム側</li>
+        <li>作る順番：薪割り → 薪の市場と値動き → 機材と注目度 → 炉と部品 → 雇用と店じまい。まずSteamで</li>
+      </ul>
+    </details>
     <div class="links">
       <a href="https://docs.google.com/presentation/d/1wGQUrSbG45D53XSl0vqF8ivn4D8GcvIJBK_zDUIS14k/edit" target="_blank" rel="noopener">異世界鍛冶屋 企画書 v2（14枚）</a>
     </div>
@@ -505,29 +560,35 @@ li::marker { color: var(--accent); }
 
   <section id="monopoly">
     <div class="head"><p class="kicker">選考課題</p><h2>MONOPOLY GO! がヒットした理由</h2></div>
-    <p class="lead">きっかけはポイ活。課金すると還元があるアプリ経由で遊び始めた。漫画やYouTubeの広告がほとんどこのゲームだったのも覚えている。</p>
     <div class="cols">
       <div class="box">
         <h3>入口：広告</h3>
-        <p>「これなら俺でもできるかも」と思わせる広告で、ゲームをしない層まで連れてくる。</p>
+        <p>「これなら俺でもできるかも」</p>
       </div>
       <div class="box">
         <h3>面白さ：奪い合い</h3>
-        <p>同じくらいの進み具合の人の拠点を壊し、資産を奪う。友達とのつながりもある。</p>
+        <p>同じくらいの人の拠点を壊す</p>
       </div>
       <div class="box">
         <h3>課金：結果が見える</h3>
-        <p>払えば何が起きるかが目で見てわかる。余裕のある人は、考えずにサイコロを回したいから払う。</p>
+        <p>払えば何が起きるか一目で分かる</p>
       </div>
     </div>
     <div class="box">
       <h3>改善するなら</h3>
       <ul>
-        <li>今の人がつながっている場所に合わせて、友達とのつながり方を時代に合わせる</li>
-        <li>やめた人を、一瞬でも戻す仕掛けを作る</li>
+        <li>つながり方を時代に合わせる（LINEで通知）</li>
+        <li>やめた人を一瞬でも戻す</li>
       </ul>
-      <p class="muted">それくらいしか課題がないほど、よくできている。何も考えずに楽しく回す人が主な遊び手で、「課金しないと無理だ」と考える人は、そもそもターゲットではない。</p>
     </div>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>きっかけはポイ活。漫画アプリやYouTubeの広告がほとんどこのゲームで、ゲームをしない人まで連れてくる仕組みだと感じた</li>
+        <li>余裕のある人は、考えずにサイコロを回したいから払う</li>
+        <li>招待リンクは、遊んでいる人が自分から誘わないと動かない。LINEなら、新しく始めた人がいたら、やめた人に自動で届く</li>
+        <li>それくらいしか課題がないほど、よくできている。「課金しないと無理だ」と考える人は、そもそもターゲットではない</li>
+      </ul>
+    </details>
     <div class="links">
       <a href="https://docs.google.com/presentation/d/1_u4vBfe-6Qa0Knhtv-Y1f0SIut-wqm5Xby3szu1oIyY/edit" target="_blank" rel="noopener">提出したスライド（2枚）</a>
     </div>
@@ -539,20 +600,33 @@ li::marker { color: var(--accent); }
     <div class="cols">
       <div class="box">
         <h3>Re:ゼロから始める異世界生活</h3>
-        <p>アニメは3周、フィギュアも複数。一番昂ったのはウルガルム戦。ほぼ仲間なしで、スバルが一人で正面から戦った最初で最後の戦い。弱くてみっともない主人公が、もがきながら強くなる姿が好き。</p>
+        <ul>
+          <li>アニメ3周</li>
+          <li>ウルガルム戦</li>
+          <li>もがきながら強くなる主人公</li>
+        </ul>
       </div>
       <div class="box">
         <h3>とあるおっさんのVRMMO活動記</h3>
-        <p>レベルが低くても、腕があれば上位のプレイヤーに勝てる設計が好き。DIMAZEのジャイアントキリングにつながっている。</p>
+        <ul>
+          <li>レベルより腕で勝てる設計</li>
+        </ul>
       </div>
       <div class="box">
         <h3>遊んだゲーム</h3>
         <ul>
-          <li><b>プロセカ</b>：中1〜高1の約3年、ほぼ毎日。EXPERT中心。好きな曲は「雨とペトラ」、一番難しくてクリアしたのは「六兆年と一夜物語」</li>
+          <li>プロセカ：約3年、ほぼ毎日</li>
           <li>MONOPOLY GO!、ロイヤルマッチ、原神、ゼンレスゾーンゼロ</li>
         </ul>
       </div>
     </div>
+    <details class="more"><summary>詳しく</summary>
+      <ul>
+        <li>リゼロ：フィギュアも複数。ウルガルム戦は、ほぼ仲間なしでスバルが一人で正面から戦った最初で最後の戦い</li>
+        <li>VRMMO活動記：レベルが低くても、腕があれば上位のプレイヤーに勝てる。DIMAZEのジャイアントキリングにつながっている</li>
+        <li>プロセカ：中1〜高1、EXPERT中心。好きな曲は「雨とペトラ」、一番難しくてクリアしたのは「六兆年と一夜物語」</li>
+      </ul>
+    </details>
     <a class="back" href="#toc">↑ 目次へ</a>
   </section>
 
