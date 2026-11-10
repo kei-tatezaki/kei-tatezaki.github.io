@@ -205,6 +205,10 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
 .reader section h2 i{font-style:normal;font-family:'Dela Gothic One',sans-serif;font-size:13px;color:var(--stone-deep);background:var(--brass);width:26px;height:26px;display:grid;place-items:center;flex:none}
 .reader section p{margin-top:12px}
 .reader section strong{color:var(--brass)}
+.reader section h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:16px;margin-top:22px;color:var(--ink)}
+.reader section ul{margin:10px 0 0;padding:0;list-style:none}
+.reader section li{position:relative;padding:6px 0 6px 20px;border-bottom:1px solid var(--stone-lift)}
+.reader section li::before{content:"";position:absolute;left:4px;top:17px;width:6px;height:6px;background:var(--brass)}
 .reader section.learn{background:linear-gradient(90deg,rgba(201,164,92,.12),transparent);border-left:3px solid var(--brass);padding:16px 18px}
 .reader .rel{margin-top:48px;border-top:1px solid var(--stone-lift);padding-top:24px}
 .reader .rel h3{font-size:16px;font-family:'M PLUS 2',sans-serif;font-weight:700;color:var(--ink-soft)}
@@ -528,7 +532,13 @@ const NOTES_ = (window.NOTES||[]).filter(n=>n&&n.id&&n.t);
 const SEC = [['happened','何が起きたか'],['thought','そのとき考えたこと'],['did','実際にやったこと'],['result','結果'],['learn','一番の学び'],['next','反省と、次にどう変えたか']];
 const txt = n => SEC.map(([k])=>n[k]||'').join('');
 const mins = n => Math.max(1, Math.round((txt(n).length + (n.one||'').length) / 500));
-const para = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').split(/\n\s*\n/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+const inl = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+const para = s => String(s).split(/\n\s*\n/).map(b=>{
+  const L=b.split('\n');
+  if(L.every(l=>/^- /.test(l))) return `<ul>${L.map(l=>`<li>${inl(l.slice(2))}</li>`).join('')}</ul>`;
+  if(/^### /.test(L[0])){ const rest=L.slice(1); return `<h3>${inl(L[0].slice(4))}</h3>`+(rest.length?(rest.every(l=>/^- /.test(l))?`<ul>${rest.map(l=>`<li>${inl(l.slice(2))}</li>`).join('')}</ul>`:`<p>${rest.map(inl).join('<br>')}</p>`):''); }
+  return `<p>${L.map(inl).join('<br>')}</p>`;
+}).join('');
 const noteMedia = n => n.cover ? [n.cover] : ((n.works||[]).map(k=>W[k]&&W[k].media[0]).filter(Boolean));
 function workCard(k){ const w=W[k]; return `<a class="work" href="${w.url}" target="_blank" rel="noopener"><div class="frame" data-w="${k}"></div><h4>${esc(w.t)}</h4>${w.one?`<p class="one">${esc(w.one)}</p>`:''}${w.by?`<p class="by">${esc(w.by)}</p>`:''}</a>`; }
 function noteCard(n){ return `<a class="work note-card" href="#note=${encodeURIComponent(n.id)}"><div class="frame" data-n="${esc(n.id)}"><span class="kind">記事</span></div><h4>${esc(n.t)}</h4>${n.one?`<p class="one">${esc(n.one)}</p>`:''}<p class="by">${n.date?esc(n.date)+'・':''}約${mins(n)}分で読めます</p></a>`; }
