@@ -143,6 +143,76 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
 .pager i{width:18px;height:3px;background:var(--stone-lift)}
 .pager i.on{background:var(--brass)}
 
+/* ---------- finder: search + tags ---------- */
+.finder{margin-top:clamp(22px,3vw,30px);position:sticky;top:0;z-index:5;background:linear-gradient(180deg,var(--stone) 78%,rgba(27,32,51,0));padding:12px 0 18px;margin-left:calc(var(--gut)*-1);margin-right:calc(var(--gut)*-1);padding-left:var(--gut);padding-right:var(--gut)}
+.search{display:flex;align-items:center;gap:10px;background:var(--stone-deep);border:1px solid var(--brass-dim);box-shadow:inset 0 0 0 3px var(--stone-deep);padding:0 14px;max-width:620px}
+.search:focus-within{border-color:var(--brass)}
+.search svg{flex:none;color:var(--brass)}
+.search input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:16px;padding:12px 0}
+.search input::placeholder{color:#7C7990}
+.search input::-webkit-search-cancel-button{display:none}
+.search .clear{background:none;border:0;color:var(--ink-soft);font:inherit;font-size:13px;cursor:pointer;padding:6px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-top:12px;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:13px;font-weight:500;color:var(--ink-soft);background:transparent;border:1px solid var(--stone-lift);padding:5px 12px;cursor:pointer;white-space:nowrap}
+.chip:hover{color:var(--ink);border-color:var(--brass-dim)}
+.chip[aria-pressed=true]{color:var(--stone-deep);background:var(--brass);border-color:var(--brass)}
+.chip .c{opacity:.6;margin-left:4px;font-variant-numeric:tabular-nums}
+.results{margin-top:8px}
+.results .count{color:var(--ink-soft);font-size:14px}
+.results .count b{color:var(--brass)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px clamp(16px,2vw,24px);margin-top:18px}
+.grid .work{flex:none}
+.empty{color:var(--ink-soft);padding:40px 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tags span{font-size:12px;color:var(--ink-soft);border:1px solid var(--stone-lift);padding:1px 8px}
+.kind{position:absolute;z-index:1;top:10px;left:10px;font-size:12px;font-weight:700;color:var(--stone-deep);background:var(--brass);padding:2px 8px}
+
+/* ---------- notes: articles ---------- */
+.notes{padding-top:clamp(64px,9vw,120px)}
+.notes > .wrap > h2{font-size:clamp(28px,4vw,44px)}
+.notes > .wrap > p{color:var(--ink-soft);margin-top:8px;max-width:38em}
+.feat{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(20px,4vw,48px);align-items:center;margin-top:clamp(28px,4vw,40px);text-decoration:none;color:var(--ink);background:var(--stone-deep);border:1px solid var(--brass-dim);padding:clamp(16px,2.6vw,24px)}
+.feat:hover{border-color:var(--brass)}
+.feat .frame{border-color:var(--stone-lift)}
+.feat h3{font-size:clamp(22px,3vw,32px)}
+.feat .one{color:var(--ink-soft);margin-top:12px}
+.feat .learn{margin-top:16px;border-left:3px solid var(--brass);padding-left:12px;font-weight:500}
+.feat .learn small{display:block;color:var(--brass);font-size:12px;font-weight:700}
+.meta{font-size:13px;color:var(--ink-soft);margin-top:12px}
+.note-card .learn{font-size:14px;margin-top:8px;border-left:2px solid var(--brass-dim);padding-left:10px;color:var(--ink)}
+@media (max-width:760px){.feat{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- reader ---------- */
+.reader{position:fixed;inset:0;z-index:50;background:rgba(10,12,18,.72);display:none;overflow-y:auto;overscroll-behavior:contain}
+.reader.open{display:block}
+.reader article{position:relative;max-width:760px;margin:clamp(0px,4vw,48px) auto;background:var(--stone);border:1px solid var(--brass-dim);min-height:100%}
+.reader .bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(18,21,31,.94);border-bottom:1px solid var(--stone-lift);font-size:13px;color:var(--ink-soft)}
+.reader .bar .prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--brass);width:0}
+.reader .bar button{margin-left:auto;background:var(--stone-deep);color:var(--ink);border:1px solid var(--brass-dim);font:inherit;font-size:13px;padding:5px 12px;cursor:pointer}
+.reader .bar a{color:var(--ink-soft)}
+.reader .cover{aspect-ratio:16/9;background:var(--stone-deep)}
+.reader .cover img{width:100%;height:100%;object-fit:cover}
+.reader .body{padding:clamp(22px,5vw,48px)}
+.reader h1{font-size:clamp(26px,4.2vw,40px);line-height:1.3}
+.reader .lead{font-size:clamp(16px,2vw,18px);color:var(--ink-soft);margin-top:14px}
+.reader .key{margin-top:28px;background:var(--stone-deep);border:1px solid var(--brass-dim);box-shadow:inset 0 0 0 3px var(--stone-deep),inset 0 0 0 4px #2E3450;padding:18px 20px}
+.reader .key small{display:block;color:var(--brass);font-size:12px;font-weight:700;letter-spacing:.06em}
+.reader .key p{margin-top:6px;font-size:17px;font-weight:700;line-height:1.7}
+.reader .toc{margin:24px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.reader section{margin-top:40px}
+.reader section h2{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px}
+.reader section h2 i{font-style:normal;font-family:'Dela Gothic One',sans-serif;font-size:13px;color:var(--stone-deep);background:var(--brass);width:26px;height:26px;display:grid;place-items:center;flex:none}
+.reader section p{margin-top:12px}
+.reader section strong{color:var(--brass)}
+.reader section.learn{background:linear-gradient(90deg,rgba(201,164,92,.12),transparent);border-left:3px solid var(--brass);padding:16px 18px}
+.reader .rel{margin-top:48px;border-top:1px solid var(--stone-lift);padding-top:24px}
+.reader .rel h3{font-size:16px;font-family:'M PLUS 2',sans-serif;font-weight:700;color:var(--ink-soft)}
+.reader .rel .grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-top:12px}
+.reader .next{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+body.lock{overflow:hidden}
+@media (max-width:760px){.reader article{margin:0;border:0}}
+
 /* ---------- discarded ideas ---------- */
 .scrap{margin-top:clamp(56px,8vw,96px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--stone-deep);padding:clamp(22px,4vw,40px);border-left:3px solid var(--brass-dim)}
 .scrap h3{font-size:22px}
@@ -189,6 +259,7 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
   <nav class="topbar">
     <a class="me" href="#top">舘﨑 慶</a>
     <a href="#dimaze">DIMAZE</a>
+    <a href="#notes" data-notes-link hidden>記事</a>
     <a href="#works">作品</a>
     <a href="#craft">作り方</a>
     <a href="#contact">連絡先</a>
@@ -262,10 +333,28 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
 
 
 
+<section class="notes" id="notes" hidden>
+  <div class="wrap">
+    <h2>制作の裏側</h2>
+    <p>うまくいかなかったこと、そのときの判断、あとからの反省まで、作品の裏で起きたことを書いています。</p>
+    <div id="feat"></div>
+    <div class="grid" id="noteGrid"></div>
+  </div>
+</section>
+
 <section class="works" id="works">
   <div class="wrap">
     <h2>作品</h2>
-    <p>分野ごとに並べています。横にスライドすると次の作品が見られます。タップすると、作り方や苦労したことを書いたページに飛びます。</p>
+    <p>分野ごとに並べています。気になる言葉で検索したり、タグで絞り込んだりもできます。</p>
+    <div class="finder" role="search">
+      <label class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="作品・記事を探す（例：チーム、AI、Unity）" aria-label="作品と記事を検索" autocomplete="off">
+        <button class="clear" id="qClear" type="button" hidden>クリア</button>
+      </label>
+      <div class="chips" id="chips" aria-label="タグで絞り込む"></div>
+    </div>
+    <div class="results" id="results" hidden></div>
     <div id="shelves"></div>
 
     <aside class="scrap">
@@ -338,6 +427,9 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
   </div>
 </footer>
 
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="rTitle"></div>
+
+<script src="notes.js"></script>
 <script>
 // ===== 作品データ。作品を足すときはここに1つ書き足す =====
 // media: 先頭から順に試す。mp4 は動画、それ以外は画像。全部だめなら作品名のタイルになる
@@ -362,6 +454,27 @@ const W = {
   plan_md:{t:'Memorial Destivision 企画書',one:'DIMAZEの前の名前のころに書いた、初めての企画書。何が正解か全く分からない状態で作った',by:'2026年8月末ごろ（ver1.5）／18ページ・制作5時間',url:'https://www.vivivit.com/works/1182498',media:['images/plan_md.jpg']},
   plan_ronin:{t:'Ronin to Shogun 企画書',one:'Robloxで公開中の侍アクション。刀で妖怪を斬り、ボスの大技を受け流して崩し「致命の一撃」を入れる手触りが中心',by:'2026年11月9日 作成／Googleスライド18ページ',url:'https://www.vivivit.com/works/1182494',media:['images/plan_ronin.jpg']},
 };
+// タグ。検索とタグの絞り込みに使う
+const TAGS = {
+  ronin:['企画','ゲームデザイン','AI活用','公開・リリース','Roblox'],
+  dimaze:['企画','ゲームデザイン','チーム開発','プログラム','公開・リリース','Unity'],
+  bugbug:['ゲームジャム','チーム開発','プログラム','C++'],
+  corgi:['産学連携','チーム開発','リーダー','企画'],
+  noboru:['ゲームデザイン'],
+  quest:['ゲームの仕組み','プログラム','Unity'],
+  ore:['ゲームの仕組み','プログラム','AI活用','Unity'],
+  aura:['エフェクト・演出','Unity'],
+  skill:['エフェクト・演出','企画','SNS分析'],
+  katana:['3D・アニメ','エフェクト・演出','Blender'],
+  pot:['3D・アニメ','Blender'],
+  majak:['エフェクト・演出','Unity'],
+  potu:['企画','3D・アニメ','プログラム','VRChat'],
+  plan_dimaze:['企画書','企画'],
+  plan_ronin:['企画書','企画','Roblox'],
+  plan_md:['企画書','企画'],
+  plan_robot:['企画書','企画','Blender'],
+};
+Object.keys(W).forEach(k=>W[k].tags=TAGS[k]||[]);
 const SHELVES = [
   {name:'ゲーム',items:['dimaze','ronin','bugbug','corgi','potu','noboru']},
   {name:'企画書',lede:'スライドの全ページはViViViTで見られます',items:['plan_dimaze','plan_ronin','plan_md','plan_robot']},
@@ -410,6 +523,95 @@ SHELVES.forEach(s => {
   };
   row.addEventListener('scroll', sync, {passive:true}); addEventListener('resize', sync); sync();
 });
+// ===== 記事・検索・タグ =====
+const NOTES_ = (window.NOTES||[]).filter(n=>n&&n.id&&n.t);
+const SEC = [['happened','何が起きたか'],['thought','そのとき考えたこと'],['did','実際にやったこと'],['result','結果'],['learn','一番の学び'],['next','反省と、次にどう変えたか']];
+const txt = n => SEC.map(([k])=>n[k]||'').join('');
+const mins = n => Math.max(1, Math.round((txt(n).length + (n.one||'').length) / 500));
+const para = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').split(/\n\s*\n/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+const noteMedia = n => n.cover ? [n.cover] : ((n.works||[]).map(k=>W[k]&&W[k].media[0]).filter(Boolean));
+function workCard(k){ const w=W[k]; return `<a class="work" href="${w.url}" target="_blank" rel="noopener"><div class="frame" data-w="${k}"></div><h4>${esc(w.t)}</h4>${w.one?`<p class="one">${esc(w.one)}</p>`:''}${w.by?`<p class="by">${esc(w.by)}</p>`:''}</a>`; }
+function noteCard(n){ return `<a class="work note-card" href="#note=${encodeURIComponent(n.id)}"><div class="frame" data-n="${esc(n.id)}"><span class="kind">記事</span></div><h4>${esc(n.t)}</h4>${n.one?`<p class="one">${esc(n.one)}</p>`:''}<p class="by">${n.date?esc(n.date)+'・':''}約${mins(n)}分で読めます</p></a>`; }
+function hydrate(root){
+  root.querySelectorAll('.frame[data-w]').forEach(f=>{const w=W[f.dataset.w]; fill(f,w.media,w.t);});
+  root.querySelectorAll('.frame[data-n]').forEach(f=>{const n=NOTES_.find(x=>x.id===f.dataset.n); const kind=f.querySelector('.kind'); const list=noteMedia(n);
+    if(!list.length){ f.innerHTML=`<span class="tile">${esc(n.t)}</span>`; } else { const i=new Image(); i.alt=''; i.onload=()=>{f.replaceChildren(i); if(kind) f.append(kind);}; i.src=list[0]; }
+    if(kind) f.append(kind); });
+}
+
+// 記事セクション
+if(NOTES_.length){
+  document.getElementById('notes').hidden=false;
+  document.querySelector('[data-notes-link]').hidden=false;
+  const [top,...rest]=NOTES_;
+  document.getElementById('feat').innerHTML=`<a class="feat" href="#note=${encodeURIComponent(top.id)}"><div class="frame" data-n="${esc(top.id)}"><span class="kind">記事</span></div><div>
+    <h3>${esc(top.t)}</h3>${top.one?`<p class="one">${esc(top.one)}</p>`:''}
+    ${top.learn?`<p class="learn"><small>この記事でいちばん伝えたいこと</small>${esc(top.learn.split(/\n/)[0])}</p>`:''}
+    <div class="tags">${(top.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+    <p class="meta">${top.date?esc(top.date)+'・':''}約${mins(top)}分で読めます</p></div></a>`;
+  document.getElementById('noteGrid').innerHTML=rest.map(noteCard).join('');
+  hydrate(document.getElementById('notes'));
+}
+
+// 検索とタグ
+const items = [...Object.keys(W).map(k=>({type:'w',k,tags:W[k].tags,text:[W[k].t,W[k].one,W[k].by,...W[k].tags].join(' ')})),
+               ...NOTES_.map(n=>({type:'n',k:n.id,tags:n.tags||[],text:[n.t,n.one,txt(n),...(n.tags||[]),...(n.works||[]).map(k=>W[k]?W[k].t:'')].join(' ')}))];
+const tagCount = {}; items.forEach(it=>it.tags.forEach(t=>tagCount[t]=(tagCount[t]||0)+1));
+const tagList = Object.keys(tagCount).sort((a,b)=>tagCount[b]-tagCount[a]);
+const chips=document.getElementById('chips'), q=document.getElementById('q'), qClear=document.getElementById('qClear'), results=document.getElementById('results'), shelves=document.getElementById('shelves');
+chips.innerHTML = tagList.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}<span class="c">${tagCount[t]}</span></button>`).join('');
+let activeTag=null;
+const norm = s => String(s).toLowerCase().normalize('NFKC');
+function run(){
+  const words = norm(q.value).trim().split(/\s+/).filter(Boolean);
+  qClear.hidden = !q.value;
+  chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed', c.dataset.t===activeTag));
+  if(!words.length && !activeTag){ results.hidden=true; shelves.hidden=false; return; }
+  const hit = items.filter(it=>(!activeTag||it.tags.includes(activeTag)) && words.every(w=>norm(it.text).includes(w)));
+  const notesFirst = hit.sort((a,b)=>(a.type===b.type?0:a.type==='n'?-1:1));
+  const label = [activeTag?`「${esc(activeTag)}」`:'', words.length?`「${esc(q.value.trim())}」`:''].filter(Boolean).join(' × ');
+  results.innerHTML = `<p class="count">${label} で <b>${hit.length}件</b> 見つかりました</p>` +
+    (hit.length ? `<div class="grid">${notesFirst.map(it=>it.type==='w'?workCard(it.k):noteCard(NOTES_.find(n=>n.id===it.k))).join('')}</div>` : `<p class="empty">見つかりませんでした。ほかの言葉か、別のタグで試してみてください。</p>`);
+  results.hidden=false; shelves.hidden=true; hydrate(results);
+}
+q.addEventListener('input', run);
+qClear.onclick=()=>{ q.value=''; run(); q.focus(); };
+chips.addEventListener('click', e=>{ const c=e.target.closest('.chip'); if(!c) return; activeTag = activeTag===c.dataset.t ? null : c.dataset.t; run(); });
+
+// 記事リーダー（#note=ID で直接開ける）
+const reader=document.getElementById('reader');
+function openNote(id){
+  const n=NOTES_.find(x=>x.id===id); if(!n) return closeNote(true);
+  const idx=NOTES_.indexOf(n), nx=NOTES_[(idx+1)%NOTES_.length];
+  const secs=SEC.filter(([k])=>n[k] && k!=='learn' || (k==='learn' && n[k]));
+  reader.innerHTML=`<article><div class="bar"><span>制作の裏側</span><a href="#note=${encodeURIComponent(n.id)}" id="rCopy">リンクをコピー</a><button type="button" id="rClose">閉じる</button><span class="prog" id="rProg"></span></div>
+    <div class="cover frame" data-n="${esc(n.id)}"></div>
+    <div class="body">
+      <div class="tags">${(n.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+      <h1 id="rTitle" style="margin-top:12px">${esc(n.t)}</h1>
+      ${n.one?`<p class="lead">${esc(n.one)}</p>`:''}
+      <p class="meta">${n.date?esc(n.date)+'・':''}約${mins(n)}分で読めます${(n.works||[]).length?'・関係する作品：'+n.works.map(k=>W[k]?esc(W[k].t):'').join('、'):''}</p>
+      ${n.learn?`<div class="key"><small>この記事でいちばん伝えたいこと</small><p>${esc(n.learn.split(/\n/)[0])}</p></div>`:''}
+      ${secs.map(([k,h],i)=>`<section class="${k==='learn'?'learn':''}"><h2><i>${i+1}</i>${h}</h2>${para(n[k])}</section>`).join('')}
+      ${(n.works||[]).filter(k=>W[k]).length?`<div class="rel"><h3>この記事に出てくる作品</h3><div class="grid">${n.works.filter(k=>W[k]).map(workCard).join('')}</div></div>`:''}
+      ${NOTES_.length>1?`<div class="next"><a class="slot" href="#note=${encodeURIComponent(nx.id)}">次の記事：${esc(nx.t)}</a></div>`:''}
+    </div></article>`;
+  hydrate(reader);
+  reader.classList.add('open'); document.body.classList.add('lock'); reader.scrollTop=0;
+  document.getElementById('rClose').onclick=()=>closeNote();
+  document.getElementById('rCopy').onclick=e=>{ e.preventDefault(); const u=location.href.split('#')[0]+'#note='+encodeURIComponent(n.id); (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{e.target.textContent='コピーしました';},()=>{e.target.textContent=u;}); };
+  document.getElementById('rClose').focus({preventScroll:true});
+}
+function closeNote(silent){
+  reader.classList.remove('open'); document.body.classList.remove('lock');
+  if(!silent && location.hash.startsWith('#note=')) history.pushState('', '', location.pathname + location.search + '#notes');
+}
+reader.addEventListener('scroll',()=>{ const p=document.getElementById('rProg'); if(p) p.style.width = (reader.scrollTop/Math.max(1,reader.scrollHeight-reader.clientHeight)*100)+'%'; },{passive:true});
+reader.addEventListener('click',e=>{ if(e.target===reader) closeNote(); });
+addEventListener('keydown',e=>{ if(e.key==='Escape' && reader.classList.contains('open')) closeNote(); });
+const route=()=>{ const m=location.hash.match(/^#note=(.+)$/); if(m) openNote(decodeURIComponent(m[1])); else if(reader.classList.contains('open')) closeNote(true); };
+addEventListener('hashchange', route); route();
+
 fill(document.getElementById('scrapThumb'), [YT('ZXQXBCY4_Lo')], 'ボツにしたもの');
 // 動画の自動再生が止められている端末でも、もう一度再生を試す
 const heroV=document.querySelector('.hero video');
