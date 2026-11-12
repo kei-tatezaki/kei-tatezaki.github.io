@@ -69,6 +69,23 @@ details[open] summary::after{content:"閉じる"}
 details .inner{padding:0 0 20px;color:var(--ink-soft)}
 details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;color:var(--ink);margin:14px 0 4px}
 
+/* ---------- now: what I'm working on ---------- */
+.now{padding-bottom:clamp(40px,6vw,72px)}
+.now-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+.now-head h2{font-size:clamp(22px,3vw,30px)}
+.now-head .upd{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft)}
+.now-head .upd::before{content:"";width:8px;height:8px;border-radius:50%;background:#5FD08A;box-shadow:0 0 0 0 rgba(95,208,138,.6);animation:live 2s infinite}
+@keyframes live{70%{box-shadow:0 0 0 8px rgba(95,208,138,0)}100%{box-shadow:0 0 0 0 rgba(95,208,138,0)}}
+@media (prefers-reduced-motion:reduce){.now-head .upd::before{animation:none}}
+.now-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(14px,2vw,20px);margin-top:18px}
+.now-card{background:var(--stone-deep);border:1px solid var(--stone-lift);border-top:2px solid var(--brass);padding:18px 18px 16px;display:flex;flex-direction:column}
+.now-card .k{font-size:12px;font-weight:700;color:var(--brass);letter-spacing:.04em}
+.now-card h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:17px;margin-top:4px}
+.now-card dl{margin:12px 0 0;font-size:14px;line-height:1.75}
+.now-card dt{color:var(--ink-soft);font-size:12px;margin-top:8px}
+.now-card dd{margin:0}
+.now-card .links{margin-top:auto;padding-top:14px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px}
+
 /* ---------- DIMAZE: the one loud moment ---------- */
 .dimaze{position:relative;background:#1a0b24 url(images/keyart.jpg) right center/cover;margin-top:clamp(16px,3vw,32px)}
 .dimaze::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,10,28,.92) 0%,rgba(18,10,28,.75) 42%,rgba(18,10,28,0) 75%)}
@@ -293,6 +310,11 @@ body.lock{overflow:hidden}
       </details>
     </div>
   </div>
+</section>
+
+<section class="now wrap" id="now" hidden>
+  <div class="now-head"><h2>いま作っているもの</h2><span class="upd" id="nowDate"></span></div>
+  <div class="now-grid" id="nowGrid"></div>
 </section>
 
 <section class="dimaze" id="dimaze">
@@ -547,6 +569,18 @@ function hydrate(root){
   root.querySelectorAll('.frame[data-n]').forEach(f=>{const n=NOTES_.find(x=>x.id===f.dataset.n); const kind=f.querySelector('.kind'); const list=noteMedia(n);
     if(!list.length){ f.innerHTML=`<span class="tile">${esc(n.t)}</span>`; } else { const i=new Image(); i.alt=''; i.onload=()=>{f.replaceChildren(i); if(kind) f.append(kind);}; i.src=list[0]; }
     if(kind) f.append(kind); });
+}
+
+// いま作っているもの
+const NOW_ = window.NOW;
+if(NOW_ && (NOW_.items||[]).length){
+  document.getElementById('now').hidden=false;
+  document.getElementById('nowDate').textContent = NOW_.updated + ' 更新';
+  document.getElementById('nowGrid').innerHTML = NOW_.items.map(it=>`<article class="now-card">
+    ${it.kind?`<span class="k">${esc(it.kind)}</span>`:''}<h3>${esc(it.t)}</h3>
+    <dl>${it.now?`<dt>いまやっていること</dt><dd>${inl(it.now)}</dd>`:''}${it.next?`<dt>次にやること</dt><dd>${inl(it.next)}</dd>`:''}</dl>
+    ${(it.links||[]).length?`<div class="links">${it.links.map(([l,u])=>`<a href="${esc(u)}"${u.startsWith('#')?'':' target="_blank" rel="noopener"'}>${esc(l)}</a>`).join('')}</div>`:''}
+  </article>`).join('');
 }
 
 // 記事セクション
