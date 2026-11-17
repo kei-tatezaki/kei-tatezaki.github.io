@@ -102,6 +102,20 @@ details h3{font-family:'M PLUS 2',sans-serif;font-weight:700;font-size:15px;colo
 .shots img{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--brass-dim)}
 .shots figcaption{font-size:13px;color:#CFC4DC;margin-top:6px}
 
+.origin{margin-top:clamp(36px,5vw,56px);max-width:1100px}
+.origin h3{font-size:clamp(20px,2.4vw,26px);line-height:1.4}
+.origin .lead{color:#D9CDE6;font-size:15px;margin-top:8px;max-width:40em}
+.origin ol{list-style:none;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 14px;margin:18px calc(var(--gut)*-1) 0;scrollbar-width:thin;scrollbar-color:var(--brass-dim) transparent}
+.origin li{flex:0 0 min(300px,78%);scroll-snap-align:start;background:rgba(18,10,28,.82);border:1px solid var(--brass-dim);padding:0 0 14px;display:flex;flex-direction:column}
+.origin li.won{border-color:var(--brass);box-shadow:inset 0 0 0 1px var(--brass)}
+.origin li img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.origin li .hd{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:12px 14px 0}
+.origin li b{font-size:16px;line-height:1.4}
+.origin li .tag{font-size:12px;font-weight:700;color:#E8946A;white-space:nowrap}
+.origin li.won .tag{color:var(--brass)}
+.origin li p{font-size:13.5px;line-height:1.75;color:#D9CDE6;padding:6px 14px 0}
+.origin .close{margin-top:10px;font-size:15px;font-weight:700}
+
 /* ---------- my part in DIMAZE ---------- */
 .mypart{padding-top:clamp(48px,7vw,84px)}
 .mypart .cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px)}
@@ -346,6 +360,18 @@ body.lock{overflow:hidden}
         <figure><img src="images/ss10.jpg?v=1117" alt="紫の光を背に立つボス" loading="lazy"></figure>
         <figure><img src="images/ss11.jpg?v=1117" alt="炎の髪のボス「マジャーク」" loading="lazy"><figcaption>5層で待つボス「マジャーク」</figcaption></figure>
       </div>
+    </div>
+    <div class="origin">
+      <h3>この形にたどり着くまで ― 4つの案を捨てた</h3>
+      <p class="lead">最初から「敵の魔法を吸う」ゲームだったわけじゃない。「インディーにないアクション」が見つかるまで、4回作っては捨てた。</p>
+      <ol>
+        <li><img src="images/origin1.jpg" alt="話せるAIの会話画面" loading="lazy"><div class="hd"><b>1. 話せるAI × 無限ダンジョン</b><span class="tag">没</span></div><p>新しさがあって、絶対に作ると決めて1か月作った。でも会話の処理だけでゲームが重くなりすぎて没。学校には「TGSに出させてほしい」とお願いしていて、チームのメンバーもいたので、中断するわけにはいかなかった。手元に残ったのは、戦闘の基礎とマップの自動生成。</p></li>
+        <li><img src="images/origin2.jpg" alt="灰色の通路でボスと戦う試作画面" loading="lazy"><div class="hd"><b>2. パリィ</b><span class="tag">没</span></div><p>メインのアクションにしようとしたけど、ほかのゲームにもあって独自性がないので没。</p></li>
+        <li><img src="images/origin3.jpg" alt="ジャスト回避の試作画面" loading="lazy"><div class="hd"><b>3. ジャスト回避</b><span class="tag">没</span></div><p>これも独自性がないので没。このとき、モデルの骨をフレームごとに記録して、回避した瞬間に青いホログラムを残すエフェクトを作った。</p></li>
+        <li><img src="images/origin4.jpg" alt="青いホログラムのデコイが残る試作画面" loading="lazy"><div class="hd"><b>4. ホログラムのデコイ</b><span class="tag">没</span></div><p>そのホログラムをデコイにして、敵がデコイに当てた技を覚える形にした。でも時間をおいて見直すと、「デコイに当たって吸い取る」のは不自然で分かりにくいので没。</p></li>
+        <li class="won"><img src="images/ss1.jpg?v=1117" alt="紫の渦で炎の魔法を吸い込む場面" loading="lazy"><div class="hd"><b>5. 敵の魔法を吸う</b><span class="tag">採用</span></div><p>デコイの「敵の技を奪う」仕組みだけは残っていた。インディーゲームにないアクションを考えて、敵の魔法を直接吸い取る形にたどり着いた。</p></li>
+      </ol>
+      <p class="close">独自性がなければ捨てる。その判断を4回重ねて、いまのDIMAZEになった。</p>
     </div>
   </div>
 </section>
